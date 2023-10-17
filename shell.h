@@ -212,7 +212,7 @@ int unset_env(info_t *, char *);
 int set_env(info_t *, char *, char *);
 
 /* ShellMemoriesKS.c components */
-int ptr_free(void **);
+int pntr_free(void **);
 
 /* BuiltinShellKS.c components */
 int shl_exit(info_t *);
