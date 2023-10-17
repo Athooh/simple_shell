@@ -1,17 +1,17 @@
 #include "shell.h"
 
 /**
- * ptr_free - it frees a pointer and makes address NULL
- * @ptr: pointer address to free
+ * pntr_free - it frees a pointer and makes address NULL
+ * @pntr: pointer address to free
  * Return: returns 1 if freed, otherwise returns 0.
  */
 
-int ptr_free(void **ptr)
+int pntr_free(void **pntr)
 {
-	if (ptr && *ptr)
+	if (pntr && *pntr)
 	{
-		free(*ptr);
-		*ptr = NULL;
+		free(*pntr);
+		*pntr = NULL;
 		return (1);
 	}
 	return (0);
