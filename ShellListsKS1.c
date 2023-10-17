@@ -2,99 +2,99 @@
 
 /**
  * printed_list -it prints all the elements of list_t linked list
- * @h: first node pointer
+ * @hk: first node pointer
  * Return: returns size of list
  */
 
-size_t printed_list(const list_t *h)
+size_t printed_list(const list_t *hk)
 {
-	size_t s = 0;
+	size_t sk = 0;
 
-	while (h)
+	while (hk)
 	{
-		_puts(convert_num(h->numb, 10, 0));
+		_puts(convert_num(hk->numb, 10, 0));
 		_putchar(':');
 		_putchar(' ');
-		_puts(h->str ? h->str : "(nil)");
+		_puts(hk->str ? hk->str : "(nil)");
 		_puts("\n");
-		h = h->next;
-		s++;
+		hk = hk->next;
+		sk++;
 	}
-	return (s);
+	return (sk);
 }
 
 /**
  * list_length - it determines linked list length
- * @x: first node pointer
+ * @xk: first node pointer
  * Return: returns size of list
  */
 
-size_t list_length(const list_t *x)
+size_t list_length(const list_t *xk)
 {
-	size_t n = 0;
+	size_t nk = 0;
 
-	while (x)
+	while (xk)
 	{
-		x = x->next;
-		n++;
+		xk = xk->next;
+		nk++;
 	}
-	return (n);
+	return (nk);
 }
 
 /**
  * node_index - gets the node index
- * @hd: list head pointer
+ * @fhd: list head pointer
  * @node: the node pointer
  * Return: returns index of node or -1 if unsuccessful
  */
 
-ssize_t node_index(list_t *hd, list_t *node)
+ssize_t node_index(list_t *fhd, list_t *node)
 {
-	size_t x = 0;
+	size_t xk = 0;
 
-	while (hd)
+	while (fhd)
 	{
-		if (hd == node)
-			return (x);
-		hd = hd->next;
-		x++;
+		if (fhd == node)
+			return (xk);
+		fhd = fhd->next;
+		xk++;
 	}
 	return (-1);
 }
 
 /**
  * list_strings - it returns string array of the list->str
- * @hd: first node pointer
+ * @fhd: first node pointer
  * Return: returns the array of strings
  */
 
-char **list_strings(list_t *hd)
+char **list_strings(list_t *fhd)
 {
-	list_t *node = hd;
-	size_t x = list_length(hd), j;
+	list_t *node = fhd;
+	size_t xk = list_length(fhd), jk;
 	char **strs;
 	char *str;
 
-	if (!hd || !x)
+	if (!fhd || !xk)
 		return (NULL);
-	strs = malloc(sizeof(char *) * (x + 1));
+	strs = malloc(sizeof(char *) * (xk + 1));
 	if (!strs)
 		return (NULL);
-	for (x = 0; node; node = node->next, x++)
+	for (xk = 0; node; node = node->next, xk++)
 	{
 		str = malloc(str_len(node->str) + 1);
 		if (!str)
 		{
-			for (j = 0; j < x; j++)
+			for (jk = 0; jk < xk; jk++)
 				free(strs[j]);
 			free(strs);
 			return (NULL);
 		}
 
 		str = str_cpy(str, node->str);
-		strs[x] = str;
+		strs[xk] = str;
 	}
-	strs[x] = NULL;
+	strs[xk] = NULL;
 	return (strs);
 }
 
@@ -108,12 +108,12 @@ char **list_strings(list_t *hd)
 
 list_t *node_startswith(list_t *node, char *prefix, char chr)
 {
-	char *q = NULL;
+	char *qk = NULL;
 
 	while (node)
 	{
-		q = starts_with(node->str, prefix);
-		if (q && ((chr == -1) || (*q == chr)))
+		qk = starts_with(node->str, prefix);
+		if (qk && ((chr == -1) || (*qk == chr)))
 			return (node);
 		node = node->next;
 	}
