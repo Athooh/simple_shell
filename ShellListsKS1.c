@@ -99,29 +99,6 @@ char **list_strings(list_t *fhd)
 }
 
 /**
- * printed_list -it prints all the elements of list_t linked list
- * @fh: first node pointer
- * Return: returns size of list
- */
-
-size_t printed_list(const list_t *fh)
-{
-	size_t sk = 0;
-
-	while (fh)
-	{
-		_puts(convert_num(fh->numb, 10, 0));
-		_putchar(':');
-		_putchar(' ');
-		_puts(fh->str ? fh->str : "(nil)");
-		_puts("\n");
-		fh = fh->next;
-		sk++;
-	}
-	return (sk);
-}
-
-/**
  * node_startswith - it returns node with string starting with prefix
  * @node: list head pointer
  * @prefix: the string to match
