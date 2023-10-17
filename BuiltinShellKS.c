@@ -37,11 +37,11 @@ int shl_exit(info_t *info)
 
 int _cwd(info_t *info)
 {
-	char *sts, *dir, buffer[1024];
+	char *st, *dir, buffer[1024];
 	int chdir_retn;
 
-	sts = getcwd(buffer, 1024);
-	if (!sts)
+	st = getcwd(buffer, 1024);
+	if (!st)
 		_puts("TODO: >>getcwd failure emsg here<<\n");
 	if (!info->input_array[1])
 	{
@@ -55,7 +55,7 @@ int _cwd(info_t *info)
 	{
 		if (!get_env(info, "OLDPWD="))
 		{
-			_puts(sts);
+			_puts(st);
 			_putchar('\n');
 			return (1);
 		}
