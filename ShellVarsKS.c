@@ -10,28 +10,28 @@
 
 int is_chain(info_t *info, char *buf, size_t *pstn)
 {
-	size_t p = *pstn;
+	size_t pk = *pstn;
 
-	if (buf[p] == '|' && buf[p + 1] == '|')
+	if (buf[pk] == '|' && buf[pk + 1] == '|')
 	{
-		buf[p] = 0;
-		p++;
+		buf[pk] = 0;
+		pk++;
 		info->command_buffer_type = CMD_OR;
 	}
-	else if (buf[p] == '&' && buf[p + 1] == '&')
+	else if (buf[pk] == '&' && buf[pk + 1] == '&')
 	{
-		buf[p] = 0;
-		p++;
+		buf[pk] = 0;
+		pk++;
 		info->command_buffer_type = CMD_AND;
 	}
-	else if (buf[p] == ';')
+	else if (buf[pk] == ';')
 	{
-		buf[p] = 0;
+		buf[pk] = 0;
 		info->command_buffer_type = CMD_CHAIN;
 	}
 	else
 		return (0);
-	*pstn = p;
+	*pstn = pk;
 	return (1);
 }
 
@@ -47,14 +47,14 @@ int is_chain(info_t *info, char *buf, size_t *pstn)
 
 void check_chain(info_t *info, char *buf, size_t *pstn, size_t idx, size_t len)
 {
-	size_t x = *pstn;
+	size_t xk = *pstn;
 
 	if (info->command_buffer_type == CMD_AND)
 	{
 		if (info->command_status)
 		{
 			buf[idx] = 0;
-			x = len;
+			xk = len;
 		}
 	}
 	if (info->command_buffer_type == CMD_OR)
@@ -62,11 +62,11 @@ void check_chain(info_t *info, char *buf, size_t *pstn, size_t idx, size_t len)
 		if (!info->command_status)
 		{
 			buf[idx] = 0;
-			x = len;
+			xk = len;
 		}
 	}
 
-	*pstn = x;
+	*pstn = xk;
 }
 
 /**
@@ -77,23 +77,23 @@ void check_chain(info_t *info, char *buf, size_t *pstn, size_t idx, size_t len)
 
 int alias_rep(info_t *info)
 {
-	int x;
+	int xk;
 	list_t *node;
-	char *s;
+	char *sk;
 
-	for (x = 0; x < 10; x++)
+	for (xk = 0; xk < 10; xk++)
 	{
 		node = node_startswith(info->alias_list, info->input_array[0], '=');
 		if (!node)
 			return (0);
 		free(info->input_array[0]);
-		s = str_chr(node->str, '=');
-		if (!s)
+		sk = str_chr(node->str, '=');
+		if (!sk)
 			return (0);
-		s = str_dup(s + 1);
-		if (!s)
+		sk = str_dup(sk + 1);
+		if (!sk)
 			return (0);
-		info->input_array[0] = s;
+		info->input_array[0] = sk;
 	}
 	return (1);
 }
@@ -106,34 +106,34 @@ int alias_rep(info_t *info)
 
 int vars_rep(info_t *info)
 {
-	int x = 0;
+	int xk = 0;
 	list_t *node;
 
-	for (x = 0; info->input_array[x]; x++)
+	for (xk = 0; info->input_array[xk]; xk++)
 	{
-		if (info->input_array[x][0] != '$' || !info->input_array[x][1])
+		if (info->input_array[xk][0] != '$' || !info->input_array[xk][1])
 			continue;
 
-		if (!str_cmp(info->input_array[x], "$?"))
+		if (!str_cmp(info->input_array[xk], "$?"))
 		{
-			str_rep(&(info->input_array[x]),
+			str_rep(&(info->input_array[xk]),
 					str_dup(convert_num(info->command_status, 10, 0)));
 			continue;
 		}
-		if (!str_cmp(info->input_array[x], "$$"))
+		if (!str_cmp(info->input_array[xk], "$$"))
 		{
-			str_rep(&(info->input_array[x]),
+			str_rep(&(info->input_array[xk]),
 					str_dup(convert_num(getpid(), 10, 0)));
 			continue;
 		}
-		node = node_startswith(info->env_variable, &info->input_array[x][1], '=');
+		node = node_startswith(info->env_variable, &info->input_array[xk][1], '=');
 		if (node)
 		{
-			str_rep(&(info->input_array[x]),
+			str_rep(&(info->input_array[xk]),
 					str_dup(str_chr(node->str, '=') + 1));
 			continue;
 		}
-		str_rep(&info->input_array[x], str_dup(""));
+		str_rep(&info->input_array[xk], str_dup(""));
 
 	}
 	return (0);
@@ -141,14 +141,14 @@ int vars_rep(info_t *info)
 
 /**
  * str_rep - it replaces string
- * @ol: old string address
- * @nw: new string
+ * @ols: old string address
+ * @nws: new string
  * Return: returns 1 if replaced, 0 otherwise
  */
 
-int str_rep(char **ol, char *nw)
+int str_rep(char **ols, char *nws)
 {
-	free(*ol);
-	*ol = nw;
+	free(*ols);
+	*ols = nws;
 	return (1);
 }
