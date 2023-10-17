@@ -42,25 +42,25 @@ int _isalpha(int ch)
 
 /**
  * string_to_int - it converts string to an integer
- * @string: the converted string
+ * @str: the converted string
  * Return: returns 0 if no numbers in string, converted number otherwise
  */
 
-int string_to_int(char *string)
+int string_to_int(char *str)
 {
-	int xk, sign = 1, flag = 0, output;
+	int x, sign = 1, flag = 0, output;
 	unsigned int result = 0;
 
-	for (xk = 0; string[xk] != '\0' && flag != 2; xk++)
+	for (x = 0; str[x] != '\0' && flag != 2; x++)
 	{
-		if (string[xk] == '-')
+		if (str[x] == '-')
 			sign *= -1;
 
-		if (string[xk] >= '0' && string[xk] <= '9')
+		if (str[x] >= '0' && str[x] <= '9')
 		{
 			flag = 1;
 			result *= 10;
-			result += (string[xk] - '0');
+			result += (str[x] - '0');
 		}
 		else if (flag == 1)
 			flag = 2;
