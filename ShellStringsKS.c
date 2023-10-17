@@ -8,14 +8,14 @@
 
 int str_len(char *st)
 {
-	int x = 0;
+	int xk = 0;
 
 	if (!st)
 		return (0);
 
 	while (*st++)
-		x++;
-	return (x);
+		xk++;
+	return (xk);
 }
 
 /**
@@ -57,19 +57,19 @@ char *starts_with(const char *hstack, const char *needle)
 
 /**
  * str_cat - it concatenates two strings
- * @destn: buffer destination
+ * @bdestn: buffer destination
  * @src: buffer source
  * Return: returns destination buffer pointer
  */
 
-char *str_cat(char *destn, char *src)
+char *str_cat(char *bdestn, char *src)
 {
-	char *retn = destn;
+	char *retn = bdestn;
 
-	while (*destn)
-		destn++;
+	while (*bdestn)
+		bdestn++;
 	while (*src)
-		*destn++ = *src++;
-	*destn = *src;
+		*bdestn++ = *src++;
+	*bdestn = *src;
 	return (retn);
 }
