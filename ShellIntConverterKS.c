@@ -28,13 +28,13 @@ int is_delim(char ch, char *dlmtr)
 
 /**
  * _isalpha - it checks alphabetic character
- * @char: input character
+ * @ch: input character
  * Return: returns 1 if ch is alphabetic, 0 otherwise
  */
 
-int _isalpha(int char)
+int _isalpha(int ch)
 {
-	if ((char >= 'a' && char <= 'z') || (char >= 'A' && char <= 'Z'))
+	if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'))
 		return (1);
 	else
 		return (0);
