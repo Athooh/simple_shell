@@ -2,16 +2,16 @@
 
 /**
  * ptr_free - it frees a pointer and makes address NULL
- * @pntr: pointer address to free
+ * @ptr: pointer address to free
  * Return: returns 1 if freed, otherwise returns 0.
  */
 
-int ptr_free(void **pntr)
+int ptr_free(void **ptr)
 {
-	if (pntr && *pntr)
+	if (ptr && *ptr)
 	{
-		free(*pntr);
-		*pntr = NULL;
+		free(*ptr);
+		*ptr = NULL;
 		return (1);
 	}
 	return (0);
