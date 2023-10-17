@@ -35,7 +35,7 @@ int unset_env(info_t *info, char *var)
 
 	while (node)
 	{
-		qs = starts_with(node->str, var);
+		q = starts_with(node->str, var);
 		if (q && *q == '=')
 		{
 			info->environment_changed = delete_node_at_index(&(info->env_variable), x);
