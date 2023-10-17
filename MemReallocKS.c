@@ -10,10 +10,10 @@
 
 char *memory_set(char *m, char b, unsigned int n)
 {
-	unsigned int x;
+	unsigned int xs;
 
-	for (x = 0; x < n; x++)
-		m[x] = b;
+	for (xs = 0; xs < n; xs++)
+		m[xs] = b;
 	return (m);
 }
 
@@ -24,13 +24,13 @@ char *memory_set(char *m, char b, unsigned int n)
 
 void str_free(char **s)
 {
-	char **a = s;
+	char **as = s;
 
 	if (!s)
 		return;
 	while (*s)
 		free(*s++);
-	free(a);
+	free(as);
 }
 
 /**
@@ -43,7 +43,7 @@ void str_free(char **s)
 
 void *mem_realloc(void *ptr, unsigned int ol_size, unsigned int nw_size)
 {
-	char *s;
+	char *ss;
 
 	if (!ptr)
 		return (malloc(nw_size));
@@ -52,13 +52,13 @@ void *mem_realloc(void *ptr, unsigned int ol_size, unsigned int nw_size)
 	if (nw_size == ol_size)
 		return (ptr);
 
-	s = malloc(nw_size);
-	if (!s)
+	ss = malloc(nw_size);
+	if (!ss)
 		return (NULL);
 
 	ol_size = ol_size < nw_size ? ol_size : nw_size;
 	while (ol_size--)
-		s[ol_size] = ((char *)ptr)[ol_size];
+		ss[ol_size] = ((char *)ptr)[ol_size];
 	free(ptr);
-	return (s);
+	return (ss);
 }
