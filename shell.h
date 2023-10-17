@@ -67,7 +67,7 @@ typedef struct liststr
  * @count_current_line: if on count this line of input
  * @program_filename: the program filename
  * @env_variables: linked list local copy of environ
- * @modified_env_viriable: custom modified copy of 
+ * @modified_env_viriable: custom modified copy of
  * environment from LL environment variable
  * @history_list: the history node
  * @alias_list: the alias node
