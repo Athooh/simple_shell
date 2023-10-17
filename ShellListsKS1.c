@@ -86,7 +86,7 @@ char **list_strings(list_t *fhd)
 		if (!str)
 		{
 			for (jk = 0; jk < xk; jk++)
-				free(strs[j]);
+				free(strs[jk]);
 			free(strs);
 			return (NULL);
 		}
