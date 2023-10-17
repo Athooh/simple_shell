@@ -9,17 +9,17 @@
 
 int _erratoi(char *st)
 {
-	int x = 0;
+	int xs = 0;
 	unsigned long int result = 0;
 
 	if (*st == '+')
 		st++;
-	for (x = 0;  st[x] != '\0'; x++)
+	for (xs = 0;  st[xs] != '\0'; xs++)
 	{
-		if (st[x] >= '0' && st[x] <= '9')
+		if (st[xs] >= '0' && st[xs] <= '9')
 		{
 			result *= 10;
-			result += (st[x] - '0');
+			result += (st[xs] - '0');
 			if (result > INT_MAX)
 				return (-1);
 		}
@@ -58,7 +58,7 @@ void print_error(info_t *info, char *err_str)
 int print_d(int input, int fdr)
 {
 	int (*__putchar)(char) = _putchar;
-	int x, count = 0;
+	int xs, count = 0;
 	unsigned int _abs_, current;
 
 	if (fdr == STDERR_FILENO)
@@ -72,14 +72,14 @@ int print_d(int input, int fdr)
 	else
 		_abs_ = input;
 	current = _abs_;
-	for (x = 1000000000; x > 1; x /= 10)
+	for (xs = 1000000000; xs > 1; xs /= 10)
 	{
-		if (_abs_ / x)
+		if (_abs_ / xs)
 		{
-			__putchar('0' + current / x);
+			__putchar('0' + current / xs);
 			count++;
 		}
-		current %= x;
+		current %= xs;
 	}
 	__putchar('0' + current);
 	count++;
@@ -101,11 +101,11 @@ char *convert_num(long int numb, int base, int flags)
 	static char buffer[50];
 	char sign = 0;
 	char *ptr;
-	unsigned long n = numb;
+	unsigned long ns = numb;
 
 	if (!(flags & CONVERT_UNSIGNED) && numb < 0)
 	{
-		n = -numb;
+		ns = -numb;
 		sign = '-';
 
 	}
@@ -114,9 +114,9 @@ char *convert_num(long int numb, int base, int flags)
 	*ptr = '\0';
 
 	do	{
-		*--ptr = array[n % base];
-		n /= base;
-	} while (n != 0);
+		*--ptr = array[ns % base];
+		ns /= base;
+	} while (ns != 0);
 
 	if (sign)
 		*--ptr = sign;
@@ -131,12 +131,12 @@ char *convert_num(long int numb, int base, int flags)
 
 void remove_comments(char *buf)
 {
-	int x;
+	int xs;
 
-	for (x = 0; buf[x] != '\0'; x++)
-		if (buf[x] == '#' && (!x || buf[x - 1] == ' '))
+	for (xs = 0; buf[xs] != '\0'; xs++)
+		if (buf[xs] == '#' && (!xs || buf[xs - 1] == ' '))
 		{
-			buf[x] = '\0';
+			buf[xs] = '\0';
 			break;
 		}
 }
