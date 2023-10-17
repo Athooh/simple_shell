@@ -3,25 +3,25 @@
 /**
  * shell_loop - shell main loop
  * @info: The structure containing potential arguments.
- * @varg: vector arguments from main()
+ * @va: vector arguments from main()
  * Return: returns 0 on success, and 1 on error(error code)
  */
 
-int shell_loop(info_t *info, char **varg)
+int shell_loop(info_t *info, char **va)
 {
-	ssize_t sk = 0;
+	ssize_t s = 0;
 	int builtin_retn = 0;
 
-	while (sk != -1 && builtin_retn != -2)
+	while (s != -1 && builtin_retn != -2)
 	{
 		clear_info(info);
 		if (is_interactive(info))
 			_puts("$ ");
 		eput_char(BUF_FLUSH);
-		sk = get_input(info);
-		if (sk != -1)
+		s = get_input(info);
+		if (s != -1)
 		{
-			set_info(info, varg);
+			set_info(info, va);
 			builtin_retn = find_builtin(info);
 			if (builtin_retn == -1)
 				cmd_find(info);
@@ -91,7 +91,7 @@ void cmd_fork(info_t *info)
 
 int find_builtin(info_t *info)
 {
-	int xk, built_in_retn = -1;
+	int x, built_in_retn = -1;
 	builtin_table builtintbl[] = {
 		{"exit", shl_exit},
 		{"env", my_env},
@@ -104,11 +104,11 @@ int find_builtin(info_t *info)
 		{NULL, NULL}
 	};
 
-	for (xk = 0; builtintbl[xk].type; xk++)
-		if (str_cmp(info->input_array[0], builtintbl[xk].type) == 0)
+	for (x = 0; builtintbl[x].type; x++)
+		if (str_cmp(info->input_array[0], builtintbl[x].type) == 0)
 		{
 			info->error_count++;
-			built_in_retn = builtintbl[xk].func(info);
+			built_in_retn = builtintbl[x].func(info);
 			break;
 		}
 	return (built_in_retn);
@@ -123,7 +123,7 @@ int find_builtin(info_t *info)
 void cmd_find(info_t *info)
 {
 	char *current_path = NULL;
-	int sk, tk;
+	int s, t;
 
 	info->current_path = info->input_array[0];
 	if (info->count_current_line == 1)
@@ -131,10 +131,10 @@ void cmd_find(info_t *info)
 		info->error_count++;
 		info->count_current_line = 0;
 	}
-	for (sk = 0, tk = 0; info->input_string[sk]; sk++)
-		if (!is_delim(info->input_string[sk], " \t\n"))
-			tk++;
-	if (!tk)
+	for (s = 0, t = 0; info->input_string[s]; s++)
+		if (!is_delim(info->input_string[s], " \t\n"))
+			t++;
+	if (!t)
 		return;
 
 	current_path = path_finder(info, get_env(info, "PATH="),
