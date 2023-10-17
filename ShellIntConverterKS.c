@@ -48,19 +48,19 @@ int _isalpha(int ch)
 
 int string_to_int(char *str)
 {
-	int x, sign = 1, flag = 0, output;
+	int xk, sign = 1, flag = 0, output;
 	unsigned int result = 0;
 
-	for (x = 0; str[x] != '\0' && flag != 2; x++)
+	for (xk = 0; str[xk] != '\0' && flag != 2; xk++)
 	{
-		if (str[x] == '-')
+		if (str[xk] == '-')
 			sign *= -1;
 
-		if (str[x] >= '0' && str[x] <= '9')
+		if (str[xk] >= '0' && str[xk] <= '9')
 		{
 			flag = 1;
 			result *= 10;
-			result += (str[x] - '0');
+			result += (str[xk] - '0');
 		}
 		else if (flag == 1)
 			flag = 2;
