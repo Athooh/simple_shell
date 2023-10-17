@@ -2,47 +2,47 @@
 
 /**
  * str_len - returns string length
- * @stk: string length to be check
+ * @st: string length to be check
  * Return: returns string integer length
  */
 
-int str_len(char *stk)
+int str_len(char *st)
 {
-	int xk = 0;
+	int x = 0;
 
-	if (!stk)
+	if (!st)
 		return (0);
 
-	while (*stk++)
-		xk++;
-	return (xk);
+	while (*st++)
+		x++;
+	return (x);
 }
 
 /**
  * str_cmp - it performs strangs lexicogarphic comparison
- * @stk1: first strang
- * @stk2: second strang
- * Return: returns -ve if s1 < s2, returns +ve if s1 > s2, zero if s1 == s2
+ * @st1: first strang
+ * @st2: second strang
+ * Return: returns -ve if st1 < st2, returns +ve if st1 > st2, zero if st1 == st2
  */
 
-int str_cmp(char *stk1, char *stk2)
+int str_cmp(char *st1, char *st2)
 {
-	while (*stk1 && *stk2)
+	while (*st1 && *st2)
 	{
-		if (*stk1 != *stk2)
-			return (*stk1 - *stk2);
-		stk1++;
-		stk2++;
+		if (*st1 != *st2)
+			return (*st1 - *st2);
+		st1++;
+		st2++;
 	}
-	if (*stk1 == *stk2)
+	if (*st1 == *st2)
 		return (0);
 	else
-		return (*stk1 < *stk2 ? -1 : 1);
+		return (*st1 < *st2 ? -1 : 1);
 }
 
 /**
  * starts_with - it checks if needle starts with haystack
- * @haystack: searched string
+ * @hstack: searched string
  * @needle: substring to find
  * Return: returns address of next haystack char or NULL
  */
@@ -62,14 +62,14 @@ char *starts_with(const char *hstack, const char *needle)
  * Return: returns destination buffer pointer
  */
 
-char *str_cat(char *bdestn, char *src)
+char *str_cat(char *destn, char *src)
 {
-	char *retn = bdestn;
+	char *retn = destn;
 
-	while (*bdestn)
-		bdestn++;
+	while (*destn)
+		destn++;
 	while (*src)
-		*bdestn++ = *src++;
-	*bdestn = *src;
+		*destn++ = *src++;
+	*destn = *src;
 	return (retn);
 }
