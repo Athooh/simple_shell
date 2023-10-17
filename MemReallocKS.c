@@ -2,35 +2,35 @@
 
 /**
  * memory_set - it updates memory with a constant byte
- * @ms: memory area pointer
- * @bs: byte to filled with *m
- * @ns: bytes amount to be filled
+ * @m: memory area pointer
+ * @b: byte to filled with *m
+ * @n: bytes amount to be filled
  * Return: returns (m) a pointer to the m memory area
  */
 
-char *memory_set(char *ms, char bs, unsigned int ns)
+char *memory_set(char *m, char b, unsigned int n)
 {
-	unsigned int xs;
+	unsigned int x;
 
-	for (xs = 0; xs < ns; xs++)
-		ms[xs] = bs;
-	return (ms);
+	for (x = 0; x < n; x++)
+		m[x] = b;
+	return (m);
 }
 
 /**
  * str_free - it frees string of strings
- * @ss: string of strings
+ * @s: string of strings
  */
 
-void str_free(char **ss)
+void str_free(char **s)
 {
-	char **as = ss;
+	char **a = s;
 
-	if (!ss)
+	if (!s)
 		return;
-	while (*ss)
-		free(*ss++);
-	free(as);
+	while (*s)
+		free(*s++);
+	free(a);
 }
 
 /**
@@ -43,7 +43,7 @@ void str_free(char **ss)
 
 void *mem_realloc(void *ptr, unsigned int ol_size, unsigned int nw_size)
 {
-	char *ss;
+	char *s;
 
 	if (!ptr)
 		return (malloc(nw_size));
@@ -52,13 +52,13 @@ void *mem_realloc(void *ptr, unsigned int ol_size, unsigned int nw_size)
 	if (nw_size == ol_size)
 		return (ptr);
 
-	ss = malloc(nw_size);
-	if (!ss)
+	s = malloc(nw_size);
+	if (!s)
 		return (NULL);
 
 	ol_size = ol_size < nw_size ? ol_size : nw_size;
 	while (ol_size--)
-		ss[ol_size] = ((char *)ptr)[ol_size];
+		s[ol_size] = ((char *)ptr)[ol_size];
 	free(ptr);
-	return (ss);
+	return (s);
 }
