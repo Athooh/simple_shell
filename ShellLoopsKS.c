@@ -15,7 +15,7 @@ int shell_loop(info_t *info, char **varg)
 	while (sk != -1 && builtin_retn != -2)
 	{
 		clear_info(info);
-		if (interactive(info))
+		if (is_interactive(info))
 			_puts("$ ");
 		eput_char(BUF_FLUSH);
 		sk = get_input(info);
@@ -26,13 +26,13 @@ int shell_loop(info_t *info, char **varg)
 			if (builtin_retn == -1)
 				cmd_find(info);
 		}
-		else if (interactive(info))
+		else if (is_interactive(info))
 			_putchar('\n');
 		free_info(info, 0);
 	}
 	write_history(info);
 	free_info(info, 1);
-	if (!interactive(info) && info->command_status)
+	if (!is_interactive(info) && info->command_status)
 		exit(info->command_status);
 	if (builtin_retn == -2)
 	{
@@ -146,7 +146,7 @@ void cmd_find(info_t *info)
 	}
 	else
 	{
-		if ((interactive(info) || get_env(info, "PATH=")
+		if ((is_interactive(info) || get_env(info, "PATH=")
 					|| info->input_array[0][0] == '/')
 			&& is_exe_cmd(info, info->input_array[0]))
 			cmd_fork(info);
