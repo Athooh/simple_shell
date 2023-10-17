@@ -21,7 +21,7 @@ void clear_info(info_t *info)
 
 void set_info(info_t *info, char **agv)
 {
-	int xs = 0;
+	int x = 0;
 
 	info->program_filename = agv[0];
 	if (info->input_string)
@@ -36,9 +36,9 @@ void set_info(info_t *info, char **agv)
 				info->input_array[1] = NULL;
 			}
 		}
-		for (xs = 0; info->input_array && info->input_array[xs]; xs++)
+		for (x = 0; info->input_array && info->input_array[x]; x++)
 			;
-		info->argument_count = xs;
+		info->argument_count = x;
 
 		alias_rep(info);
 		vars_rep(info);
