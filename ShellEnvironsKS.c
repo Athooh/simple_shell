@@ -26,7 +26,7 @@ char *get_env(info_t *info, const char *name)
 
 	while (node)
 	{
-		qs = starts_with(node->strs, name);
+		qs = starts_with(node->str, name);
 		if (qs && *qs)
 			return (qs);
 		node = node->next;
@@ -45,7 +45,7 @@ int my_set_env(info_t *info)
 {
 	if (info->argument_count != 3)
 	{
-		eput_strs("Incorrect number of arguements\n");
+		eput_str("Incorrect number of arguements\n");
 		return (1);
 	}
 	if (set_env(info, info->input_array[1], info->input_array[2]))
@@ -65,7 +65,7 @@ int my_unset_env(info_t *info)
 
 	if (info->argument_count == 1)
 	{
-		eput_strs("Too few arguements.\n");
+		eput_str("Too few arguements.\n");
 		return (1);
 	}
 	for (xs = 1; xs <= info->argument_count; xs++)
