@@ -77,7 +77,7 @@ char **string_to_words(char *str, char *dlmtr)
 			xk++;
 		kk = 0;
 		while (!is_delim(str[xk + kk], dlmtr) && str[xk + kk])
-			k++;
+			kk++;
 		st[jk] = malloc((kk + 1) * sizeof(char));
 		if (!st[jk])
 		{
