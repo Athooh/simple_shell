@@ -9,40 +9,40 @@
 
 char **string_to_words2(char *str, char dlmtr)
 {
-	int x, j, k, m, numwords = 0;
+	int xk, jk, kk, mk, numwords = 0;
 	char **st;
 
 	if (str == NULL || str[0] == 0)
 		return (NULL);
-	for (x = 0; str[x] != '\0'; x++)
-		if ((str[x] != dlmtr && str[x + 1] == dlmtr) ||
-				    (str[x] != dlmtr && !str[x + 1]) || str[x + 1] == dlmtr)
+	for (xk = 0; str[xk] != '\0'; xk++)
+		if ((str[xk] != dlmtr && str[xk + 1] == dlmtr) ||
+				    (str[xk] != dlmtr && !str[xk + 1]) || str[xk + 1] == dlmtr)
 			numwords++;
 	if (numwords == 0)
 		return (NULL);
 	st = malloc((1 + numwords) * sizeof(char *));
 	if (!st)
 		return (NULL);
-	for (x = 0, j = 0; j < numwords; j++)
+	for (xk = 0, jk = 0; jk < numwords; jk++)
 	{
-		while (str[x] == dlmtr && str[x] != dlmtr)
-			x++;
-		k = 0;
-		while (str[x + k] != dlmtr && str[x + k] && str[x + k] != dlmtr)
-			k++;
-		st[j] = malloc((k + 1) * sizeof(char));
-		if (!st[j])
+		while (str[xk] == dlmtr && str[xk] != dlmtr)
+			xk++;
+		kk = 0;
+		while (str[xk + kk] != dlmtr && str[xk + kk] && str[xk + kk] != dlmtr)
+			kk++;
+		st[jk] = malloc((kk + 1) * sizeof(char));
+		if (!st[jk])
 		{
-			for (k = 0; k < j; k++)
-				free(st[k]);
+			for (kk = 0; kk < jk; kk++)
+				free(st[kk]);
 			free(st);
 			return (NULL);
 		}
-		for (m = 0; m < k; m++)
-			st[j][m] = str[x++];
-		st[j][m] = 0;
+		for (mk = 0; mk < kk; mk++)
+			st[jk][mk] = str[xk++];
+		st[jk][mk] = 0;
 	}
-	st[j] = NULL;
+	st[jk] = NULL;
 	return (st);
 }
 
@@ -55,15 +55,15 @@ char **string_to_words2(char *str, char dlmtr)
 
 char **string_to_words(char *str, char *dlmtr)
 {
-	int x, j, k, m, numwords = 0;
+	int xk, jk, kk, mk, numwords = 0;
 	char **st;
 
 	if (str == NULL || str[0] == 0)
 		return (NULL);
 	if (!dlmtr)
 		dlmtr = " ";
-	for (x = 0; str[x] != '\0'; x++)
-		if (!is_delim(str[x], dlmtr) && (is_delim(str[x + 1], dlmtr) || !str[x + 1]))
+	for (xk = 0; str[xk] != '\0'; xk++)
+		if (!is_delim(str[xk], dlmtr) && (is_delim(str[xk + 1], dlmtr) || !str[xk + 1]))
 			numwords++;
 
 	if (numwords == 0)
@@ -71,25 +71,25 @@ char **string_to_words(char *str, char *dlmtr)
 	st = malloc((1 + numwords) * sizeof(char *));
 	if (!st)
 		return (NULL);
-	for (x = 0, j = 0; j < numwords; j++)
+	for (xk = 0, jk = 0; jk < numwords; jk++)
 	{
-		while (is_delim(str[x], dlmtr))
-			x++;
-		k = 0;
-		while (!is_delim(str[x + k], dlmtr) && str[x + k])
+		while (is_delim(str[xk], dlmtr))
+			xk++;
+		kk = 0;
+		while (!is_delim(str[xk + kk], dlmtr) && str[xk + kk])
 			k++;
-		st[j] = malloc((k + 1) * sizeof(char));
-		if (!st[j])
+		st[jk] = malloc((kk + 1) * sizeof(char));
+		if (!st[jk])
 		{
-			for (k = 0; k < j; k++)
-				free(st[k]);
+			for (kk = 0; kk < jk; kk++)
+				free(st[kk]);
 			free(st);
 			return (NULL);
 		}
-		for (m = 0; m < k; m++)
-			st[j][m] = str[x++];
-		st[j][m] = 0;
+		for (mk = 0; mk < kk; mk++)
+			st[jk][mk] = str[xk++];
+		st[jk][mk] = 0;
 	}
-	st[j] = NULL;
+	st[jk] = NULL;
 	return (st);
 }
