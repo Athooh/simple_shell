@@ -2,24 +2,24 @@
 
 /**
  * _erratoi - it converts string to an integer
- * @sts: the converted string
+ * @st: the converted string
  * Return: returns 0 if no numbers in string, converted number otherwise
  * returns -1 on error
  */
 
-int _erratoi(char *sts)
+int _erratoi(char *st)
 {
 	int xs = 0;
 	unsigned long int result = 0;
 
-	if (*sts == '+')
-		sts++;
-	for (xs = 0;  sts[xs] != '\0'; xs++)
+	if (*st == '+')
+		st++;
+	for (xs = 0;  st[xs] != '\0'; xs++)
 	{
-		if (sts[xs] >= '0' && sts[xs] <= '9')
+		if (st[xs] >= '0' && st[xs] <= '9')
 		{
 			result *= 10;
-			result += (sts[xs] - '0');
+			result += (st[xs] - '0');
 			if (result > INT_MAX)
 				return (-1);
 		}
