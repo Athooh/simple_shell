@@ -35,22 +35,22 @@ void str_free(char **ss)
 
 /**
  * mem_realloc - it reallocates the memory block
- * @ptrs: previous malloc'ated block pointer
+ * @ptr: previous malloc'ated block pointer
  * @ol_size: previous block byte size
  * @nw_size: new block byte size
  * Return: returns old'block nameen pointer.
  */
 
-void *mem_realloc(void *ptrs, unsigned int ol_size, unsigned int nw_size)
+void *mem_realloc(void *ptr, unsigned int ol_size, unsigned int nw_size)
 {
 	char *ss;
 
-	if (!ptrs)
+	if (!ptr)
 		return (malloc(nw_size));
 	if (!nw_size)
-		return (free(ptrs), NULL);
+		return (free(ptr), NULL);
 	if (nw_size == ol_size)
-		return (ptrs);
+		return (ptr);
 
 	ss = malloc(nw_size);
 	if (!ss)
@@ -58,7 +58,7 @@ void *mem_realloc(void *ptrs, unsigned int ol_size, unsigned int nw_size)
 
 	ol_size = ol_size < nw_size ? ol_size : nw_size;
 	while (ol_size--)
-		ss[ol_size] = ((char *)ptrs)[ol_size];
-	free(ptrs);
+		ss[ol_size] = ((char *)ptr)[ol_size];
+	free(ptr);
 	return (ss);
 }
