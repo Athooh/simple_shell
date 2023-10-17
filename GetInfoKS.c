@@ -26,7 +26,7 @@ void set_info(info_t *info, char **agv)
 	info->program_filename = agv[0];
 	if (info->input_string)
 	{
-		info->input_array = str_to_wds(info->input_string, " \t");
+		info->input_array = string_to_words(info->input_string, " \t");
 		if (!info->input_array)
 		{
 			info->input_array = malloc(sizeof(char *) * 2);
