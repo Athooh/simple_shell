@@ -39,21 +39,21 @@ int is_chain(info_t *info, char *buf, size_t *cpstn)
  * check_chain - the checks to continue chaining based on last status
  * @info: The structure containing potential arguments.
  * @buf: character buffer
- * @cpstn: current position address in buf
- * @indx: starting position in buf
+ * @pstn: current position address in buf
+ * @idx: starting position in buf
  * @len: buf length
  * Return: returns Void
  */
 
-void check_chain(info_t *info, char *buf, size_t *cpstn, size_t indx, size_t len)
+void check_chain(info_t *info, char *buf, size_t *pstn, size_t idx, size_t len)
 {
-	size_t xk = *cpstn;
+	size_t xk = *pstn;
 
 	if (info->command_buffer_type == CMD_AND)
 	{
 		if (info->command_status)
 		{
-			buf[indx] = 0;
+			buf[idx] = 0;
 			xk = len;
 		}
 	}
@@ -61,12 +61,12 @@ void check_chain(info_t *info, char *buf, size_t *cpstn, size_t indx, size_t len
 	{
 		if (!info->command_status)
 		{
-			buf[indx] = 0;
+			buf[idx] = 0;
 			xk = len;
 		}
 	}
 
-	*cpstn = xk;
+	*pstn = xk;
 }
 
 /**
