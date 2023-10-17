@@ -58,7 +58,7 @@ void *mem_realloc(void *ptrs, unsigned int ol_size, unsigned int nw_size)
 
 	ol_size = ol_size < nw_size ? ol_size : nw_size;
 	while (ol_size--)
-		ss[ol_size] = ((char *)ptr)[ol_size];
+		ss[ol_size] = ((char *)ptrs)[ol_size];
 	free(ptrs);
 	return (ss);
 }
