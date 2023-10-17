@@ -68,7 +68,7 @@ void free_info(info_t *info, int all)
 			free_list(&(info->alias_list));
 		str_free(info->modified_env_variable);
 			info->modified_env_variable = NULL;
-		ptr_free((void **)info->command_buffer);
+		pntr_free((void **)info->command_buffer);
 		if (info->read_file_descriptor > 2)
 			close(info->read_file_descriptor);
 		_putchar(BUF_FLUSH);
