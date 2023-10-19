@@ -22,7 +22,7 @@ int str_len(char *st)
  * str_cmp - it performs strangs lexicogarphic comparison
  * @st1: first strang
  * @st2: second strang
- * Return: returns -ve if st1 < st2, returns +ve if st1 > st2, zero if st1 == st2
+ * Return: returns -ve if st1 < st2, returns +ve if st1 > st2, 0 if st1 == st2
  */
 
 int str_cmp(char *st1, char *st2)
