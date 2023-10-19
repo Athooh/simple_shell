@@ -63,7 +63,8 @@ char **string_to_words(char *str, char *dlmtr)
 	if (!dlmtr)
 		dlmtr = " ";
 	for (xk = 0; str[xk] != '\0'; xk++)
-		if (!is_delim(str[xk], dlmtr) && (is_delim(str[xk + 1], dlmtr) || !str[xk + 1]))
+		if (!is_delim(str[xk], dlmtr) &&
+			(is_delim(str[xk + 1], dlmtr) || !str[xk + 1]))
 			numwords++;
 
 	if (numwords == 0)
